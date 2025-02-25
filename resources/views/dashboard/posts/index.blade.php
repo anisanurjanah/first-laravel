@@ -6,8 +6,14 @@
         <h1 class="h2">My Posts</h1>
     </div>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="table-responsive small col-lg-8">
-        <a href="/dashboard/posts/create" class="btn btn-primary">Create new post</a>
+        <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new post</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -18,18 +24,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($posts as $post)
+                @if ($posts->isNotEmpty())
+                    @foreach ($posts as $post)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->category->name }}</td>
+                            <td>
+                                <a href="/dashboard/posts/{{ $post->slug }}"><i class="bi bi-eye"></i></a>
+                                <a href=""><i class="bi bi-pencil-square"></i></a>
+                                <a href=""><i class="bi bi-x-circle"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->category->name }}</td>
-                        <td>
-                            <a href="/dashboard/posts/{{ $post->slug }}"><i class="bi bi-eye"></i></a>
-                            <a href=""><i class="bi bi-pencil-square"></i></a>
-                            <a href=""><i class="bi bi-x-circle"></i></a>
-                        </td>
+                        <td colspan="4" class="text-center">No post available.</td>
                     </tr>
-                @endforeach
+                @endif
             </tbody>
         </table>
     </div>

@@ -20,13 +20,13 @@
                     Delete
                 </a>
 
-                <img src="https://images.unsplash.com/photo-1417325384643-aac51acc9e5d" class="img-fluid mt-3" alt="{{ $post->category->name }}">
+                <div class="d-flex justify-content-center align-items-center mt-4" style="height: 400px; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1417325384643-aac51acc9e5d" class="card-img-top w-100 h-auto" alt="{{ $post->category->name }}">
+                </div>
 
                 <article class="my-3 fs-5">
                     {!! $post->body !!}
                 </article>
-
-                <a href="/posts" class="d-block mt-4">Back to posts</a>
             </div>
         </div>
     </div>
