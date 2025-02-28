@@ -12,19 +12,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(3)->create();
 
-        // \App\Models\User::create([
-        //     'name' => 'Anisa Nurjanah',
-        //     'email' => 'anisanurjanah2705@example.com',
-        //     'password' => bcrypt('12345')
-        // ]);
+        \App\Models\User::create([
+            'name' => 'Anisa Nurjanah',
+            'username' => 'nissxxse',
+            'email' => 'anisanurjanah2705@example.com',
+            'password' => bcrypt('password')
+        ]);
 
         // \App\Models\User::create([
         //     'name' => 'Neilr',
         //     'email' => 'neilr4419@example.com',
         //     'password' => bcrypt('12345')
         // ]);
+
+        \App\Models\User::factory(3)->create();
 
         \App\Models\Category::create([
             'name' => 'Web Programming',

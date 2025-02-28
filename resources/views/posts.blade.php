@@ -23,8 +23,12 @@
 
     @if ($posts->count() )
         <div class="card mb-3">
-            <div class="d-flex justify-content-center align-items-center" style="height: 400px; overflow: hidden;">
-                <img src="https://images.unsplash.com/photo-1417325384643-aac51acc9e5d" class="card-img-top w-100 h-auto" alt="{{ $posts[0]->category->name }}">
+            <div class="d-flex justify-content-center align-items-center mt-4" style="height: 400px; overflow: hidden;">
+                @if ($posts[0]->image)
+                    <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top w-100 h-auto" alt="{{ $posts[0]->category->name }}">
+                @else
+                    <img src="https://images.unsplash.com/photo-1417325384643-aac51acc9e5d" class="card-img-top w-100 h-auto" alt="{{ $posts[0]->category->name }}">
+                @endif
             </div>
             <div class="card-body text-center">
               <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</h3>
@@ -43,8 +47,12 @@
                             <div class="position-absolute bg-dark px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7)">
                                 <a href="/posts?category={{ $post->category->slug }}" class="text-white text-decoration-none">{{$post->category->name }}</a>
                             </div>
-                            <div class="d-flex justify-content-center align-items-center" style="height: 200px; overflow: hidden;">
-                                <img src="https://images.unsplash.com/photo-1417325384643-aac51acc9e5d" class="card-img-top w-100 h-auto" alt="{{ $post->category->name }}">
+                            <div class="d-flex justify-content-center align-items-center mt-4" style="height: 400px; overflow: hidden;">
+                                @if ($post->image)
+                                    <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid w-100 h-auto" alt="{{ $post->category->name }}">
+                                @else
+                                    <img src="https://images.unsplash.com/photo-1417325384643-aac51acc9e5d" class="img-fluid w-100 h-auto" alt="{{ $post->category->name }}">
+                                @endif
                             </div>
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a></h5>
